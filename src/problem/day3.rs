@@ -35,19 +35,24 @@ impl Day for Code {
     }
 
     fn part2(&self, input: &File) -> String {
-        let mut sum = 0;
-        for rucksacks in BufReader::new(input)
+        BufReader::new(input)
             .lines()
             .map(|line| line.unwrap().chars().collect::<HashSet<_>>())
             .collect::<Vec<_>>()
             .chunks(3)
-        {
-            let mut intersection = rucksacks[0].clone();
-            for rucksack in rucksacks {
-                intersection = intersection.intersection(rucksack).cloned().collect();
-            }
-            sum += char_to_priority(*intersection.iter().next().unwrap());
-        }
-        sum.to_string()
+            .map(|group| {
+                char_to_priority(
+                    *group
+                        .iter()
+                        .cloned()
+                        .reduce(|a, b| a.intersection(&b).cloned().collect())
+                        .unwrap()
+                        .iter()
+                        .next()
+                        .unwrap(),
+                )
+            })
+            .sum::<u32>()
+            .to_string()
     }
 }
