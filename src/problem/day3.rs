@@ -26,12 +26,9 @@ impl Day for Code {
             .map(|line| {
                 let line = line.unwrap();
                 let (first, second) = line.split_at(line.len() / 2);
-                let first_half = first.chars().collect::<HashSet<_>>();
-                second.chars().find(|c| first_half.contains(&c))
-            })
-            .map(|char| match char {
-                Some(c) => char_to_priority(c),
-                None => panic!("A duplicate character should have been found!"),
+                let first_as_set = first.chars().collect::<HashSet<_>>();
+                let second_as_set = second.chars().collect::<HashSet<_>>();
+                char_to_priority(*first_as_set.intersection(&second_as_set).next().unwrap())
             })
             .sum::<u32>()
             .to_string()
