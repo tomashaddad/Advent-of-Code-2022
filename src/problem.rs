@@ -9,6 +9,7 @@ pub struct Problem {
 
 mod day1;
 mod day2;
+mod day3;
 
 impl Problem {
     pub fn new(day: i64) -> Self {
@@ -32,6 +33,7 @@ impl Problem {
         match self.day {
             1 => &day1::Code,
             2 => &day2::Code,
+            3 => &day3::Code,
             _ => unreachable!(),
         }
     }
