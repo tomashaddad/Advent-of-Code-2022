@@ -10,6 +10,7 @@ pub struct Problem {
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 impl Problem {
     pub fn new(day: i64) -> Self {
@@ -34,7 +35,8 @@ impl Problem {
             1 => &day1::Code,
             2 => &day2::Code,
             3 => &day3::Code,
-            _ => unreachable!(),
+            4 => &day4::Code,
+            _ => panic!("Invalid day number"),
         }
     }
 }
