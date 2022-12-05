@@ -1,5 +1,4 @@
 use clap::Parser;
-use std::fs::File;
 
 pub trait Day {
     fn part1(&self, input: &str) -> String;
