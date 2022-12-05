@@ -7,14 +7,11 @@ use crate::Day;
 pub struct Code;
 
 impl Day for Code {
-    fn part1(&self, input: &File) -> String {
-        let reader = BufReader::new(input);
-
+    fn part1(&self, input: &str) -> String {
         let mut max = 0;
         let mut current = 0;
 
-        for line in reader.lines() {
-            let line = line.unwrap();
+        for line in input.lines() {
             if line.is_empty() {
                 if current > max {
                     max = current;
@@ -31,13 +28,11 @@ impl Day for Code {
         max.to_string()
     }
 
-    fn part2(&self, input: &File) -> String {
-        let reader = BufReader::new(input);
+    fn part2(&self, input: &str) -> String {
         let mut top_three = [0, 0, 0];
         let mut current = 0;
 
-        for line in reader.lines() {
-            let line = line.unwrap();
+        for line in input.lines() {
             if line.is_empty() {
                 let min = top_three.iter_mut().min().unwrap();
                 if current > *min {

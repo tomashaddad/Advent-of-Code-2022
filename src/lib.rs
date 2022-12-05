@@ -2,8 +2,8 @@ use clap::Parser;
 use std::fs::File;
 
 pub trait Day {
-    fn part1(&self, input: &File) -> String;
-    fn part2(&self, input: &File) -> String;
+    fn part1(&self, input: &str) -> String;
+    fn part2(&self, input: &str) -> String;
 }
 
 #[derive(Parser, Debug)]

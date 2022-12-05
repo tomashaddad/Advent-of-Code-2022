@@ -29,12 +29,11 @@ fn to_range(s: &str) -> RangeInclusive<u32> {
 }
 
 impl Day for Code {
-    fn part1(&self, input: &File) -> String {
-        BufReader::new(input)
+    fn part1(&self, input: &str) -> String {
+        input
             .lines()
             .map(|line| {
-                line.unwrap()
-                    .split_once(",")
+                line.split_once(",")
                     .map(|(first, second)| (to_range(first), to_range(second)))
             })
             .filter(|allocation| {
@@ -45,12 +44,11 @@ impl Day for Code {
             .to_string()
     }
 
-    fn part2(&self, input: &File) -> String {
-        BufReader::new(input)
+    fn part2(&self, input: &str) -> String {
+        input
             .lines()
             .map(|line| {
-                line.unwrap()
-                    .split_once(",")
+                line.split_once(",")
                     .map(|(first, second)| (to_range(first), to_range(second)))
             })
             .filter(|allocation| {

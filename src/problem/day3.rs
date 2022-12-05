@@ -20,11 +20,10 @@ fn char_to_priority(mut c: char) -> u32 {
 }
 
 impl Day for Code {
-    fn part1(&self, input: &File) -> String {
-        BufReader::new(input)
+    fn part1(&self, input: &str) -> String {
+        input
             .lines()
             .map(|line| {
-                let line = line.unwrap();
                 let (first, second) = line.split_at(line.len() / 2);
                 let first_as_set = first.chars().collect::<HashSet<_>>();
                 let second_as_set = second.chars().collect::<HashSet<_>>();
@@ -34,10 +33,10 @@ impl Day for Code {
             .to_string()
     }
 
-    fn part2(&self, input: &File) -> String {
-        BufReader::new(input)
+    fn part2(&self, input: &str) -> String {
+        input
             .lines()
-            .map(|line| line.unwrap().chars().collect::<HashSet<_>>())
+            .map(|line| line.chars().collect::<HashSet<_>>())
             .collect::<Vec<_>>()
             .chunks(3)
             .map(|group| {

@@ -1,21 +1,22 @@
 use crate::Day;
-use std::fs::File;
+use std::fs::read_to_string;
 use std::path::Path;
 
 pub struct Problem {
     day: i64,
-    input: File,
+    input: String,
 }
 
 mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 impl Problem {
     pub fn new(day: i64) -> Self {
         let path = Path::new("./src/data").join(format!("d{:02}.txt", day));
-        let input = File::open(path).expect("file wasn't found.");
+        let input = read_to_string(path).expect("A file with the input data must exist");
         Self { day, input }
     }
 
@@ -36,6 +37,7 @@ impl Problem {
             2 => &day2::Code,
             3 => &day3::Code,
             4 => &day4::Code,
+            5 => &day5::Code,
             _ => panic!("Invalid day number"),
         }
     }

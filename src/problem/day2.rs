@@ -93,12 +93,9 @@ impl Outcome {
 }
 
 impl Day for Code {
-    fn part1(&self, input: &File) -> String {
-        let reader = BufReader::new(input);
-
+    fn part1(&self, input: &str) -> String {
         let mut score = 0;
-        for line in reader.lines() {
-            let line = line.unwrap();
+        for line in input.lines() {
             let mut chars = line.chars();
             let opponent_shape = Shape::from_char(chars.next().unwrap());
             let player_shape = Shape::from_char(chars.last().unwrap());
@@ -107,12 +104,9 @@ impl Day for Code {
         score.to_string()
     }
 
-    fn part2(&self, input: &File) -> String {
-        let reader = BufReader::new(input);
-
+    fn part2(&self, input: &str) -> String {
         let mut score = 0;
-        for line in reader.lines() {
-            let line = line.unwrap();
+        for line in input.lines() {
             let mut chars = line.chars();
             let opponent_shape = Shape::from_char(chars.next().unwrap());
             let target_outcome = Outcome::from_char(chars.last().unwrap());
