@@ -16,9 +16,7 @@ impl Day for Code {
                 continue;
             }
             let calorie = line.parse::<i32>();
-            if calorie.is_ok() {
-                current += calorie.unwrap();
-            }
+            current += calorie.unwrap();
         }
 
         max.to_string()
@@ -38,9 +36,7 @@ impl Day for Code {
                 continue;
             }
             let calorie = line.parse::<i32>();
-            if calorie.is_ok() {
-                current += calorie.unwrap();
-            }
+            current += calorie.unwrap();
         }
 
         let sum: i32 = top_three.iter().sum();

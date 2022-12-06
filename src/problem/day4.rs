@@ -30,7 +30,7 @@ impl Day for Code {
         input
             .lines()
             .map(|line| {
-                line.split_once(",")
+                line.split_once(',')
                     .map(|(first, second)| (to_range(first), to_range(second)))
             })
             .filter(|allocation| {
@@ -45,7 +45,7 @@ impl Day for Code {
         input
             .lines()
             .map(|line| {
-                line.split_once(",")
+                line.split_once(',')
                     .map(|(first, second)| (to_range(first), to_range(second)))
             })
             .filter(|allocation| {

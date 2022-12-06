@@ -27,18 +27,9 @@ impl Shape {
 
     fn beats(&self, other: &Shape) -> bool {
         match self {
-            Shape::Rock => match other {
-                Shape::Scissors => true,
-                _ => false,
-            },
-            Shape::Paper => match other {
-                Shape::Rock => true,
-                _ => false,
-            },
-            Shape::Scissors => match other {
-                Shape::Paper => true,
-                _ => false,
-            },
+            Shape::Rock => matches!(other, Shape::Scissors),
+            Shape::Paper => matches!(other, Shape::Rock),
+            Shape::Scissors => matches!(other, Shape::Paper),
         }
     }
 

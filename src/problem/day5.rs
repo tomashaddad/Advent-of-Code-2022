@@ -33,12 +33,12 @@ fn parse(input: &str) -> (Vec<VecDeque<char>>, Vec<Instruction>) {
 
     let state = state
         .into_iter()
-        .map(|row| VecDeque::from(row))
+        .map(VecDeque::from)
         .filter(|row| row.back().unwrap().is_numeric())
         .map(|mut row| {
             row.pop_back();
             row.retain(|c| !c.is_whitespace());
-            VecDeque::from(row)
+            row
         })
         .collect::<Vec<_>>();
 
