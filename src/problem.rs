@@ -13,6 +13,8 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
+mod day8;
 
 impl Problem {
     pub fn new(day: i64) -> Self {
@@ -38,6 +40,8 @@ impl Problem {
             4 => &day4::Code,
             5 => &day5::Code,
             6 => &day6::Code,
+            7 => &day7::Code,
+            8 => &day8::Code,
             _ => panic!("Invalid day number"),
         }
     }
