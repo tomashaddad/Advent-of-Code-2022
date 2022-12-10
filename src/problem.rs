@@ -8,6 +8,7 @@ pub struct Problem {
 }
 
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -44,6 +45,7 @@ impl Problem {
             7 => &day7::Code,
             8 => &day8::Code,
             9 => &day9::Code,
+            10 => &day10::Code,
             _ => panic!("Invalid day number"),
         }
     }
