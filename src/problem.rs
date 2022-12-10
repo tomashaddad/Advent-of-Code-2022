@@ -7,16 +7,16 @@ pub struct Problem {
     input: String,
 }
 
-mod day1;
+mod day01;
+mod day02;
+mod day03;
+mod day04;
+mod day05;
+mod day06;
+mod day07;
+mod day08;
+mod day09;
 mod day10;
-mod day2;
-mod day3;
-mod day4;
-mod day5;
-mod day6;
-mod day7;
-mod day8;
-mod day9;
 
 impl Problem {
     pub fn new(day: i64) -> Self {
@@ -36,15 +36,15 @@ impl Problem {
 
     fn get_code(&self) -> &dyn Day {
         match self.day {
-            1 => &day1::Code,
-            2 => &day2::Code,
-            3 => &day3::Code,
-            4 => &day4::Code,
-            5 => &day5::Code,
-            6 => &day6::Code,
-            7 => &day7::Code,
-            8 => &day8::Code,
-            9 => &day9::Code,
+            1 => &day01::Code,
+            2 => &day02::Code,
+            3 => &day03::Code,
+            4 => &day04::Code,
+            5 => &day05::Code,
+            6 => &day06::Code,
+            7 => &day07::Code,
+            8 => &day08::Code,
+            9 => &day09::Code,
             10 => &day10::Code,
             _ => panic!("Invalid day number"),
         }

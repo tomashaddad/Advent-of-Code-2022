@@ -21,7 +21,6 @@ impl Day for Code {
                 cycle += 1;
                 match cycle {
                     20 | 60 | 100 | 140 | 180 | 220 => {
-                        println!("On cycle {} with value {}", cycle, value);
                         strengths.push(value * cycle);
                     }
                     _ => {}
