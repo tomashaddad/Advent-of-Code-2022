@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-use crate::Day;
+use crate::problem::Day;
 
 pub struct Code;
 

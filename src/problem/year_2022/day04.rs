@@ -1,6 +1,6 @@
 use std::ops::RangeInclusive;
 
-use crate::Day;
+use crate::problem::Day;
 
 pub struct Code;
 
