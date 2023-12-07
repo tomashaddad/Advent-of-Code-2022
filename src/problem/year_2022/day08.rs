@@ -44,7 +44,7 @@ impl Day for Code {
                     continue;
                 }
 
-                let mut tree_vis = &mut visibility_grid[y][x];
+                let tree_vis = &mut visibility_grid[y][x];
                 let height = tree_height[y][x];
 
                 for dx in 0..x {

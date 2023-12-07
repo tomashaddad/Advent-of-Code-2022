@@ -38,7 +38,7 @@ impl Day for Code {
 
         race_times
             .into_iter()
-            .zip(record_distances.into_iter())
+            .zip(record_distances)
             .map(|(max_time, current_record)| total_better_times(max_time, current_record))
             .collect::<Vec<_>>()
             .into_iter()
