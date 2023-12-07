@@ -2,8 +2,9 @@ use std::{cmp::Ordering, collections::HashMap};
 
 use crate::problem::Day;
 
-#[derive(Debug, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Eq, Ord, Hash)]
 enum Card {
+    Joker,
     Two,
     Three,
     Four,
@@ -20,7 +21,7 @@ enum Card {
 }
 
 impl Card {
-    fn from_char(c: char) -> Card {
+    fn from_char(c: char, jokers: bool) -> Card {
         match c {
             '2' => Card::Two,
             '3' => Card::Three,
@@ -31,7 +32,10 @@ impl Card {
             '8' => Card::Eight,
             '9' => Card::Nine,
             'T' => Card::Ten,
-            'J' => Card::Jack,
+            'J' => match jokers {
+                true => Card::Joker,
+                false => Card::Jack,
+            },
             'Q' => Card::Queen,
             'K' => Card::King,
             'A' => Card::Ace,
@@ -48,15 +52,27 @@ struct Hand {
 }
 
 impl Hand {
-    fn from_str(cards: &str, bid: &str) -> Hand {
-        let card_vec = cards.chars().map(Card::from_char).collect::<Vec<_>>();
-        let counts_map = card_vec.iter().fold(HashMap::new(), |mut acc, card| {
+    fn from_str(cards: &str, bid: &str, jokers: bool) -> Hand {
+        let card_vec = cards
+            .chars()
+            .map(|char| Card::from_char(char, jokers))
+            .collect::<Vec<_>>();
+
+        let mut counts_map = card_vec.iter().fold(HashMap::new(), |mut acc, card| {
             let count = acc.entry(card).or_insert(0);
             *count += 1;
             acc
         });
 
-        let card_counts = counts_map.values().cloned().collect::<Vec<_>>();
+        if jokers && card_vec.iter().filter(|&&card| card == Card::Joker).count() != 5 {
+            let jokers_removed = counts_map.remove(&Card::Joker).unwrap_or(0);
+            if jokers_removed > 0 {
+                let highest_card = **counts_map.iter().max_by_key(|(_, &count)| count).unwrap().0;
+                *counts_map.get_mut(&highest_card).unwrap() += jokers_removed;
+            }
+        }
+
+        let card_counts = counts_map.values().copied().collect::<Vec<_>>();
 
         let max_count = card_counts
             .iter()
@@ -125,28 +141,32 @@ enum HandType {
     FiveOfAKind,
 }
 
+fn run(input: &str, jokers: bool) -> String {
+    let mut hands = input
+        .lines()
+        .map(|line| {
+            line.split_once(' ')
+                .map(|(cards, bid)| Hand::from_str(cards, bid, jokers))
+                .unwrap()
+        })
+        .collect::<Vec<_>>();
+
+    hands.sort_by(|hand1, hand2| hand1.partial_cmp(hand2).unwrap());
+
+    hands
+        .iter()
+        .enumerate()
+        .fold(0, |acc, hand| acc + hand.1.bid * (hand.0 + 1) as u32)
+        .to_string()
+}
+
 pub struct Code;
 impl Day for Code {
     fn part1(&self, input: &str) -> String {
-        let mut hands = input
-            .lines()
-            .map(|line| {
-                line.split_once(' ')
-                    .map(|(cards, bid)| Hand::from_str(cards, bid))
-                    .unwrap()
-            })
-            .collect::<Vec<_>>();
-
-        hands.sort_by(|hand1, hand2| hand1.partial_cmp(hand2).unwrap());
-
-        hands
-            .iter()
-            .enumerate()
-            .fold(0, |acc, hand| acc + hand.1.bid * (hand.0 + 1) as u32)
-            .to_string()
+        run(input, false)
     }
 
     fn part2(&self, input: &str) -> String {
-        todo!();
+        run(input, true)
     }
 }
