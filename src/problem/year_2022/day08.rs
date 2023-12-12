@@ -61,15 +61,15 @@ impl Day for Code {
                     }
                 }
 
-                for dy in 0..y {
-                    if tree_height[dy][x] >= height {
+                for dy in tree_height.iter().take(y) {
+                    if dy[x] >= height {
                         tree_vis.top = false;
                         break;
                     }
                 }
 
-                for dy in (y + 1)..tree_height.len() {
-                    if tree_height[dy][x] >= height {
+                for dy in tree_height.iter().skip(y + 1) {
+                    if dy[x] >= height {
                         tree_vis.bottom = false;
                         break;
                     }

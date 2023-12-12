@@ -75,7 +75,7 @@ impl Day for Code {
             .to_string()
     }
 
-    fn part2(&self, input: &str) -> String {
+    fn part2(&self, _input: &str) -> String {
         todo!();
     }
 }
