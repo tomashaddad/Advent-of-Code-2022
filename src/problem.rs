@@ -12,7 +12,7 @@ macro_rules! include_modules {
 }
 
 include_modules!(year_2022, day01, day02, day03, day04, day05, day06, day07, day08, day09, day10);
-include_modules!(year_2023, day01, day05, day06, day07, day08, day09, day10, day11);
+include_modules!(year_2023, day01, day02, day05, day06, day07, day08, day09, day10, day11);
 
 pub struct Problem {
     year: u32,
@@ -59,6 +59,7 @@ impl Problem {
             },
             2023 => match self.day {
                 1 => &year_2023::day01::Code,
+                2 => &year_2023::day02::Code,
                 5 => &year_2023::day05::Code,
                 6 => &year_2023::day06::Code,
                 7 => &year_2023::day07::Code,
