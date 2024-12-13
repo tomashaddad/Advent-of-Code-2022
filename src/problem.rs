@@ -14,7 +14,8 @@ macro_rules! include_modules {
 include_modules!(year_2022, day01, day02, day03, day04, day05, day06, day07, day08, day09, day10);
 include_modules!(year_2023, day01, day02, day05, day06, day07, day08, day09, day10, day11, day14);
 include_modules!(
-    year_2024, day01, day02, day03, day04, day05, day06, day07, day08, day09, day10, day11
+    year_2024, day01, day02, day03, day04, day05, day06, day07, day08, day09, day10, day11, day12,
+    day13
 );
 
 pub struct Problem {
@@ -85,6 +86,8 @@ impl Problem {
                 9 => &year_2024::day09::Code,
                 10 => &year_2024::day10::Code,
                 11 => &year_2024::day11::Code,
+                12 => &year_2024::day12::Code,
+                13 => &year_2024::day13::Code,
                 _ => panic!("Invalid day given for year 2024!"),
             },
             _ => panic!("The year {} is invalid!", self.year),
